@@ -1,0 +1,27 @@
+{
+  "name": "turboArmyRST_API",
+  "version": "1.0.0",
+  "description": "An API that polulate RST from PDF with a questionair user interface to standerdize RST form for 872nd MC CO GRD AMB",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "build": "node server.js"
+  },
+  "keywords": [
+    "autopopulate",
+    "army",
+    "turbo",
+    "turbo",
+    "form",
+    "RST",
+    "RST",
+    "Form",
+    "872"
+  ],
+  "author": "SGT Lin Ray-Jhe",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pdf-lib": "^1.11.1"
+  }
+}
