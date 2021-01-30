@@ -15,12 +15,17 @@ const read_pdf = async(path) => {
     updateMetadata: false 
   })
   const form = pdfDoc.getForm()
-  const fields = form.getFields()
-  fields.forEach(field => {
-    const type = field.constructor.name
-    const name = field.getName()
-    console.log(`${type}: ${name}`)
-  })
+  const checkFields = form.getCheckBox("Check Box3");
+  const nameField = form.getTextField("1 NAME Last First MI");
+  nameField.setText('EVERY THING IS AWESOME')
+  checkFields.check()
+  const pdfBytes = await pdfDoc.save()
+  fs.writeFileSync(`${__dirname}/test${Date.now()}.pdf`,pdfBytes,)
+  // fields.forEach(field => {
+  //   const type = field.constructor.name
+  //   const name = field.getName()
+  //   console.log(`${type}: ${name}`)
+  // })
 
   // // Print all available metadata fields
   // console.log('From:', pdfDoc.getForm)
