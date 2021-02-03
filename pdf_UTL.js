@@ -1,6 +1,7 @@
 const {PDFDocument} = require('pdf-lib');
 const fs = require('fs');
 const PDF_PATH = `${__dirname}/pdf_temp/872nd RST Request Form(old).pdf`;
+const WRITE_PATH = `${__dirname}/pdf_test_file/test${Date.now()}.pdf`
 const PDF_PATH_1380 = `${__dirname}/pdf_temp/872ND MC CO 1380.pdf`;
 
 const printFillableBlocks = async(path) => {
@@ -31,14 +32,8 @@ const getInputFieldsArr = async(loaded_PDF_Obj) => {
 
 
 const read_pdf = async(path) => {
-  // This should be a Uint8Array or ArrayBuffer
-  // This data can be obtained in a number of different ways
-  // If your running in a Node environment, you could use fs.readFile()
-  // In the browser, you could make a fetch() call and use res.arrayBuffer()
-  
   const existingPdfBytes = fs.readFileSync(path)
 
-  // Load a PDFDocument without updating its existing metadata
   const pdfDoc = await PDFDocument.load(existingPdfBytes, { 
     updateMetadata: false 
   })
@@ -47,9 +42,34 @@ const read_pdf = async(path) => {
   const checkFields = form.getCheckBox("Check Box3");
   nameField.setText('EVERY THING IS AWESOME!! everything is cool when you are part of a team everything is awesome when you are living a dream. I am a soldier, I am a member of a team I will maintain my arms eqipment and myself')
   checkFields.check()
-  const pdfBytes = await pdfDoc.save()
+  const pdfBytes = await pdfDoc.save();
   fs.writeFileSync(`${__dirname}/pdf_test_file/test${Date.now()}.pdf`,pdfBytes,)
 };
 
-read_pdf(PDF_PATH)
+const addName = async(name) => {
+  const pdf = await creat_pdf(PDF_PATH);
+  const form = pdf.getForm();
+  const nameField = form.getTextField("1 NAME Last First MI");
+  nameField.setText("Ray testing addName func");
+  const pdfWithName = await pdf.save();
+  return pdfWithName;
+}
+
+const writePDF = (write_path, pdfObj) => {
+  fs.writeFileSync(write_path,pdfObj,)
+}
+
+const test = () => {
+  addName()
+  .then((data)=> (writePDF(WRITE_PATH, data)))
+  .catch(console.log)
+}
+
+test()
+
+
+
+
+
+// read_pdf(PDF_PATH)
 
