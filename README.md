@@ -19,5 +19,9 @@ The new RST from, 1380 from, and any from that come out of army are encrypted.
 
 Option 1 is find a way that I can programatically iput the data without the passcode or Option 2 get the passcode. it will take me a long time to try and find a way to work around the password problem. For now I'll just build my app and demo it using the old form. 
 
+Next step
+read "curry functoin work plan" in pdf_UTL(line71:89)
+I need to create that curry function 
+I need to decide if I want to take in the OPTION{save: true|false}
 
 

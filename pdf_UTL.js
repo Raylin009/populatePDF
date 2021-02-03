@@ -50,22 +50,43 @@ const addName = async(name) => {
   const pdf = await creat_pdf(PDF_PATH);
   const form = pdf.getForm();
   const nameField = form.getTextField("1 NAME Last First MI");
-  nameField.setText("Ray testing addName func");
+  nameField.setText(name);
   const pdfWithName = await pdf.save();
   return pdfWithName;
 }
 
 const writePDF = (write_path, pdfObj) => {
-  fs.writeFileSync(write_path,pdfObj,)
+  fs.writeFileSync(write_path,pdfObj)
 }
 
 const test = () => {
-  addName()
+  addName("Ray testing addName dynamic input")
   .then((data)=> (writePDF(WRITE_PATH, data)))
   .catch(console.log)
 }
 
 test()
+
+/*
+curry function plan 
+
+(field Type)=> {
+  return (id)=>{
+    return (input, {save: true|false}) => {
+
+    }
+  }
+}
+
+
+return an obj
+{
+  _3_doms:(inpout, {save: true}) => {...},
+  _5_SSN
+  _Check_Box4
+  _Check_Box5
+}
+*/
 
 
 
