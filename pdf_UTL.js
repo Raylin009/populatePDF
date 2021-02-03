@@ -1,6 +1,34 @@
 const {PDFDocument} = require('pdf-lib');
 const fs = require('fs');
-const PDF_PATH = `${__dirname}/pdf_temp/872nd MED DET RST APR BTA (BLANK).pdf`
+const PDF_PATH = `${__dirname}/pdf_temp/872nd RST Request Form(old).pdf`;
+const PDF_PATH_1380 = `${__dirname}/pdf_temp/872ND MC CO 1380.pdf`;
+
+const printFillableBlocks = async(path) => {
+  const existingPdfBytes = fs.readFileSync(path)
+  const pdfDoc = await PDFDocument.load(existingPdfBytes, { 
+    updateMetadata: false 
+  })
+  const fields = form.getFields()
+  fields.forEach(field => {
+    const type = field.constructor.name
+    const name = field.getName()
+    console.log(`${type}: ${name}`)
+  })
+}
+
+const creat_pdf = async(path) => {
+  const existingPdfBytes = fs.readFileSync(path)
+  const pdfDoc = await PDFDocument.load(existingPdfBytes, { 
+    updateMetadata: false 
+  });
+  return pdfDoc;
+}
+
+const getInputFieldsArr = async(loaded_PDF_Obj) => {
+  const arr = loaded_PDF_Obj.getForm().getFields();
+  return arr;
+}
+
 
 const read_pdf = async(path) => {
   // This should be a Uint8Array or ArrayBuffer
@@ -15,20 +43,12 @@ const read_pdf = async(path) => {
     updateMetadata: false 
   })
   const form = pdfDoc.getForm()
+  const nameField = form.getTextField("DUTIES TO BE PERFORMEDRow1");
   const checkFields = form.getCheckBox("Check Box3");
-  const nameField = form.getTextField("1 NAME Last First MI");
-  nameField.setText('EVERY THING IS AWESOME')
+  nameField.setText('EVERY THING IS AWESOME!! everything is cool when you are part of a team everything is awesome when you are living a dream. I am a soldier, I am a member of a team I will maintain my arms eqipment and myself')
   checkFields.check()
   const pdfBytes = await pdfDoc.save()
-  fs.writeFileSync(`${__dirname}/test${Date.now()}.pdf`,pdfBytes,)
-  // fields.forEach(field => {
-  //   const type = field.constructor.name
-  //   const name = field.getName()
-  //   console.log(`${type}: ${name}`)
-  // })
-
-  // // Print all available metadata fields
-  // console.log('From:', pdfDoc.getForm)
+  fs.writeFileSync(`${__dirname}/pdf_test_file/test${Date.now()}.pdf`,pdfBytes,)
 };
 
 read_pdf(PDF_PATH)

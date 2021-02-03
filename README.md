@@ -13,3 +13,11 @@ Resouces: Fill Data In Existing PDF Form Using NodeJS (https://stackoverflow.com
 
 Decided on pdf-lib (https://www.npmjs.com/package/pdf-lib#fill-form)
 
+02/02/2021
+Situation: 
+The new RST from, 1380 from, and any from that come out of army are encrypted.
+
+Option 1 is find a way that I can programatically iput the data without the passcode or Option 2 get the passcode. it will take me a long time to try and find a way to work around the password problem. For now I'll just build my app and demo it using the old form. 
+
+
+

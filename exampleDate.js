@@ -1,4 +1,5 @@
-const PDFFieldList = `PDFTextField: 3 DMOS
+const PDFFieldList_oldRstForm = `
+PDFTextField: 3 DMOS
 PDFTextField: 5 SSN
 PDFTextField: 7 No of Drills Missed
 PDFTextField: 6 Dates of AbsenceRow1
@@ -57,4 +58,6 @@ PDFSignature: Signature7
 PDFCheckBox: Check Box1
 PDFCheckBox: Check Box2
 PDFCheckBox: Check Box11
-PDFCheckBox: Check Box12`
+PDFCheckBox: Check Box12`;
+
+const PDFFieldList_1380 = ``;
